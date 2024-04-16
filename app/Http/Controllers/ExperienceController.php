@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Experience;
+use App\Models\Info;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ExperienceController extends Controller
@@ -12,11 +14,15 @@ class ExperienceController extends Controller
      */
     public function index()
     {
-        $experiences = Experience::all();
+        $user = User::where('email','john.doe@example.com')->first();
+        return response()->json(['error' => $user]);
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $experiences = Experience::where('email', $user->email)->get(); // Access email property using ->email
         return response()->json($experiences);
     }
-
-
 
     /**
      * Store a newly created resource in storage.

@@ -14,7 +14,8 @@ class InfoController extends Controller
      */
     public function index()
     {
-        $infos = Info::all();
+        $id=  $info = Info::findOrFail(request()->input('_id'));
+        $infos = Info::find($id);
         return response()->json($infos);
     }
 
@@ -27,7 +28,7 @@ class InfoController extends Controller
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required|email|unique:infos,email',
+            'email' => 'required|email',
             'phone' => 'required',
             'address' => 'required',
             'linkden' => 'required',

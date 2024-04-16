@@ -26,7 +26,7 @@ Route::post('users', [UserController::class, 'store']);
 Route::post('login', [UserController::class, 'authenticate']);
 
 Route::resource('info', InfoController::class)->only([
-    'index','destroy', 'show', 'store', 'update','edit'
+    'index', 'store'
  ]);
 
  Route::resource('education', FormationController::class)->only([
