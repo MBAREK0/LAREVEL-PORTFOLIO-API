@@ -17,7 +17,7 @@ class ExperienceController extends Controller
         $user = User::where('email','john.doe@example.com')->first();
         return response()->json(['error' => $user]);
         if (!$user) {
-            return response()->json(['error' => 'User not found'], 404);
+            return response()->json(['error' => 'User n found'], 404);
         }
 
         $experiences = Experience::where('email', $user->email)->get(); // Access email property using ->email
