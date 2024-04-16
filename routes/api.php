@@ -26,14 +26,17 @@ Route::post('users', [UserController::class, 'store']);
 Route::post('login', [UserController::class, 'authenticate']);
 
 Route::resource('info', InfoController::class)->only([
-    'index', 'store'
+    'index', 'store' ,'destroy', 'show', 'update'
  ]);
 
  Route::resource('education', FormationController::class)->only([
     'index','destroy', 'show', 'store', 'update'
  ]);
- Route::get('education/{id}', [FormationController::class, 'edit']);
+
 
  Route::resource('experience', ExperienceController::class)->only([
     'index','destroy', 'show', 'store', 'update','edit'
  ]);
+
+ Route::delete('experience/delete', [ExperienceController::class, 'destroy']);
+ Route::delete('education/delete', [FormationController::class, 'destroy']);

@@ -55,4 +55,11 @@ class FormationController extends Controller
 
 
 }
+public function destroy()
+{
+    $item = Formation::findOrFail(request()->input('_id'));
+    $item->delete();
+
+    return response()->json(['message' => 'Experience deleted successfully']);
+}
 }

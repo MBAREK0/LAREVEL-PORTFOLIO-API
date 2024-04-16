@@ -14,13 +14,8 @@ class ExperienceController extends Controller
      */
     public function index()
     {
-        $user = User::where('email','john.doe@example.com')->first();
-        return response()->json(['error' => $user]);
-        if (!$user) {
-            return response()->json(['error' => 'User n found'], 404);
-        }
 
-        $experiences = Experience::where('email', $user->email)->get(); // Access email property using ->email
+        $experiences = Experience::all(); // Access email property using ->email
         return response()->json($experiences);
     }
 
@@ -63,6 +58,13 @@ class ExperienceController extends Controller
 
     }
 
+    public function destroy()
+    {
+        $item = Experience::findOrFail(request()->input('_id'));
+        $item->delete();
+
+        return response()->json(['message' => 'Experience deleted successfully']);
+    }
 
 
 }
